@@ -19,78 +19,26 @@ namespace leetcode1
         {
             public string LongestCommonPrefix(string[] strs)
             {
-                int min_length;
-                int j = 0;
-                string letter_sum = "";
-
-                if (strs.Length > 1)
+                if (strs == null || strs.Length == 0)
                 {
-   bool is_breaked = false;  
-                    
-                   
-                   min_length = strs.Min(y=> y.Length); 
-
-                        for (int i = 0; i < strs.Length - 1; i+=0)
-                        {
-                            for (int jj = 0; jj <= min_length - 1; jj++)
-                            {
-
-                                if (i == strs.Length - 2)
-                                {
-                                    if (strs[i][j] == strs[i + 1][j])
-                                    {
-                                        letter_sum += strs[i][j];
-                                        j++;
-                                    i = 0;
-                                   
-                                    break;
-                                    }
-
-                                    else
-                                    {
-                                    is_breaked = true;
-                                        break;
-                                    }
-                                }
-
-                                else
-                                {
-
-                                    if (strs[i][j] == strs[i + 1][j])
-                                    {
-                                    i += 1;
-                                    break;
-                                    
-                                    }
-                                    else
-                                    {
-                                    is_breaked = true;
-                                        break;
-                                    }
-                                }
-
-                            }
-
-                        if (is_breaked)
-                        {
-                            break;
-                        }
-                        }
-                    
-
+                    return "";
                 }
-                else
+
+                // Sort the array
+                Array.Sort(strs);
+
+                // The first and the last string after sorting
+                string firstStr = strs[0];
+                string lastStr = strs[strs.Length - 1];
+
+                int i = 0;
+                while (i < firstStr.Length && i < lastStr.Length && firstStr[i] == lastStr[i])
                 {
-                    letter_sum += strs[0];
+                    i++;
                 }
-                return letter_sum;
 
-
-
-
+                return firstStr.Substring(0, i);
             }
         }
     }
-
-
 }
